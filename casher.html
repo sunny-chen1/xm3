@@ -69,8 +69,10 @@
     */
     function addClick(price) {
       // 在此处编写代码
+			let rv=0;
 			result=document.querySelector('#result');
-			if(result.value===''){
+			rv=result.value;
+			if(rv===''){
 				result.value=price;
 			}else{
 				result.value+='+'+price;
@@ -91,25 +93,27 @@
     */
     function checkoutClick() {
       // 在此处编写代码
-			arr=[];
-			num=0;
+			let arr=[];
+			let sum=0;
 			let a1=0;
+			let rv=0;
 			result=document.querySelector('#result');
-			if(result.value!==''){
-				arr=result.value.split('+');
-				// arr.forEach(function (a){ 
-				// 	a1=Number(a);
-				// 	num+=a1;
-				// });
+			rv=result.value;
+			if(rv!==''){
+				arr=rv.split('+');
 				for(let i=arr.length-1;i>=0;i--){
 					a1=Number(arr[i]);
-					num+=a1;
+					sum+=a1;
+				}
 			}
-			result.value="总金额："+num;
-			disabledBtn();
-			transparency();
-    }
-		};
+				// arr.forEach(function (a){ 
+				// 	a1=Number(a);
+				// 	sum+=a1;
+				// });
+				result.value="总金额："+sum;
+				disabledBtn();
+				transparency();
+		}
     /*
     功能：使用jQuery库编写代码，将“结帐”按钮设为禁用。
     参数：无
@@ -117,8 +121,9 @@
     */
     function disabledBtn() {
       // 在此处编写代码
-			btn_checkout=document.querySelector('#btn_checkout');
-			btn_checkout.disabled = true; 
+			// btn_checkout=document.querySelector('#btn_checkout');
+			// btn_checkout.disabled = true; 
+			$("#btn_checkout").attr("disabled","true"); 
     }
     /*
     功能：使用jQuery库编写代码，将水果商品表格的透明度设为0.3，动画持续时间为1s。
@@ -128,8 +133,9 @@
     */
     function transparency() {
       // 在此处编写代码
-			$("table").css("transition","1s");
-			$("table").css("opacity","0.3");
+			// $("table").css("transition","1s");
+			// $("table").css("opacity","0.3");
+			$("table").animate({"opacity":"0.3"},1000);
 		} 
     /*
     功能：点击“交易完成”按钮触发，重新加载当前页面，初始页面状态。
@@ -138,10 +144,7 @@
     */
     function reloadClick() {
       // 在此处编写代码
-			result.value='';
-			btn_checkout.disabled = false;
-			$("table").css("transition","1s");
-			$("table").css("opacity","1");
+			location.reload();
     }
     </script>
   </body>
